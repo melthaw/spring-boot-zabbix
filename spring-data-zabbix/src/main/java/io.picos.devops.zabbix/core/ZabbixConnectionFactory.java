@@ -5,8 +5,18 @@ import org.springframework.dao.support.PersistenceExceptionTranslator;
 /**
  * @author dz
  */
-public interface ZabbixConnectionFactory extends PersistenceExceptionTranslator {
+public interface ZabbixConnectionFactory {
 
+    /**
+     * @return
+     */
     ZabbixConnection getConnection();
+
+    /**
+     * Exposes a shared {@link ZabbixExceptionTranslator}.
+     *
+     * @return will never be {@literal null}.
+     */
+    PersistenceExceptionTranslator getExceptionTranslator();
 
 }

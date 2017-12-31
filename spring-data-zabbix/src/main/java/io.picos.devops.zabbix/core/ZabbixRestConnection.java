@@ -1,5 +1,6 @@
 package io.picos.devops.zabbix.core;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,10 +11,15 @@ public class ZabbixRestConnection implements ZabbixConnection {
 
     private boolean initialized = false;
 
+    private ConnectOptions connectOptions;
+
     private RestTemplate restTemplate;
 
-    public ZabbixRestConnection(RestTemplate restTemplate) {
+    private String authToken;
+
+    public ZabbixRestConnection(RestTemplate restTemplate, ConnectOptions connectOptions) {
         this.restTemplate = restTemplate;
+        this.connectOptions = connectOptions;
     }
 
     /**
@@ -23,7 +29,12 @@ public class ZabbixRestConnection implements ZabbixConnection {
      */
     @Override
     public void init() throws DataAccessException {
+        if (!this.initialized) {
+            //do auth
+            ZabbixRequest authRequest = new ZabbixRequest();
 
+
+        }
     }
 
     /**
@@ -36,6 +47,25 @@ public class ZabbixRestConnection implements ZabbixConnection {
         return this.initialized;
     }
 
+    @Override
+    public ZabbixResponse execute(ZabbixRequest zabbixRequest) {
+        if (StringUtils.isEmpty(zabbixRequest.getAuth())) {
+            if (!this.initialized) {
+                throw new ZabbixException("The connection is not initialized.");
+            }
+
+            zabbixRequest.setAuth(this.authToken);
+        }
+
+        //do rest quest
+        //get
+        //post
+        //put
+        //delete
+        //others
+        throw new ZabbixException(String.format("Unsupported zabbix request method %s", zabbixRequest.getMethod()));
+    }
+
     /**
      * Closes (or quits) the connection.
      *
@@ -43,7 +73,6 @@ public class ZabbixRestConnection implements ZabbixConnection {
      */
     @Override
     public void close() throws DataAccessException {
-
     }
 
     /**

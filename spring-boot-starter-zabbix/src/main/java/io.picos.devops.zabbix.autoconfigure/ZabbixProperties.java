@@ -1,5 +1,6 @@
 package io.picos.devops.zabbix.autoconfigure;
 
+import io.picos.devops.zabbix.core.ConnectOptions;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -8,35 +9,58 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author dz
  */
 @ConfigurationProperties(prefix = "io.picos.devops.zabbix")
-public class ZabbixProperties {
+public class ZabbixProperties extends ConnectOptions {
 
-    private String url;
+    private ZabbixProperties.Pool pool;
 
-    private String username;
-
-    private String password;
-
-    public String getUrl() {
-        return url;
+    public Pool getPool() {
+        return pool;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPool(Pool pool) {
+        this.pool = pool;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    public static class Pool {
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+        private int maxIdle = 8;
+        private int minIdle = 0;
+        private int maxActive = 8;
+        private int maxWait = -1;
 
-    public String getPassword() {
-        return password;
-    }
+        public Pool() {
+        }
 
-    public void setPassword(String password) {
-        this.password = password;
+        public int getMaxIdle() {
+            return this.maxIdle;
+        }
+
+        public void setMaxIdle(int maxIdle) {
+            this.maxIdle = maxIdle;
+        }
+
+        public int getMinIdle() {
+            return this.minIdle;
+        }
+
+        public void setMinIdle(int minIdle) {
+            this.minIdle = minIdle;
+        }
+
+        public int getMaxActive() {
+            return this.maxActive;
+        }
+
+        public void setMaxActive(int maxActive) {
+            this.maxActive = maxActive;
+        }
+
+        public int getMaxWait() {
+            return this.maxWait;
+        }
+
+        public void setMaxWait(int maxWait) {
+            this.maxWait = maxWait;
+        }
     }
 }

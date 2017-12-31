@@ -3,7 +3,7 @@ package io.picos.devops.zabbix.core;
 /**
  * @author dz
  */
-public interface ZabbixOperations<K, V> {
+public interface ZabbixOperations {
 
     /**
      * Executes the given action within a Zabbix connection. Application exceptions thrown by the action object get
