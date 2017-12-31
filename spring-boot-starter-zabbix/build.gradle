@@ -1,8 +1,8 @@
 dependencies {
 	compile libs.commons
 	compile libs.springBoot
-	compile libs.springSecurity
-	compile libs.springDataMongodb
-	compile libs.swagger2
+
+	compile project(":spring-data-zabbix")
+	compile project(":spring-zabbix-api")
 }
 

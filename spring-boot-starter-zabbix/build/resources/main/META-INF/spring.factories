@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.picos.devops.zabbix.autoconfigure.ZabbixDataAutoConfiguration

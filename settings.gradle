@@ -1,6 +1,5 @@
 rootProject.name = 'spring-zabbix'
 include 'spring-data-zabbix'
 include 'spring-boot-starter-zabbix'
-include 'spring-zabbix-api-service'
+include 'spring-zabbix-api'
 include 'spring-zabbix-api-server'
-

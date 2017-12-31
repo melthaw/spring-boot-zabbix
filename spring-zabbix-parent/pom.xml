@@ -9,12 +9,12 @@
     <packaging>pom</packaging>
     <name>spring-zabbix-parent</name>
     <url>http://picos.io</url>
-    <description>The zabbix api service based on spring.</description>
+    <description>The Zabbix API service based on Spring framework.</description>
 
     <modules>
         <module>spring-data-zabbix</module>
         <module>spring-boot-starter-zabbix</module>
-        <module>spring-zabbix-api-service</module>
+        <module>spring-zabbix-api</module>
         <module>spring-zabbix-api-server</module>
     </modules>
 
