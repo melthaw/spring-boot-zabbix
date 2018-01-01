@@ -56,7 +56,11 @@ public class ZabbixTemplate implements ZabbixOperations, InitializingBean, Appli
 
     @Override
     public String apiVersion() {
-        return null;
+        return execute(connection -> {
+            ZabbixRequest request = RequestBuilder.newBuilder().method("apiinfo.version").build();
+            ZabbixResponse response = connection.execute(request);
+            return response.getResult().toString();
+        });
     }
 
     private ZabbixConnection getConnection() {
