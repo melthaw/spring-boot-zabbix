@@ -22,10 +22,13 @@ public class ZabbixSimpleConnectionFactory extends AbstractZabbixConnectionFacto
         connectOptions.setUrl(this.getUrl());
         connectOptions.setUsername(this.getUsername());
         connectOptions.setPassword(this.getPassword());
-        return new ZabbixRestConnection(restTemplate, connectOptions);
+        ZabbixRestConnection result = new ZabbixRestConnection(restTemplate, connectOptions);
+        postProcessConnection(result);
+        return result;
     }
 
-    protected ZabbixConnection postProcessConnection(ZabbixConnection connection) {
+    protected ZabbixConnection postProcessConnection(ZabbixRestConnection connection) {
+        connection.init();
         return connection;
     }
 

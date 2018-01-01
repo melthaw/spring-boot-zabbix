@@ -17,10 +17,6 @@ ext {
                     "org.springframework.boot:spring-boot-starter-aop:${version_spring_boot}",
                     "org.springframework.boot:spring-boot-devtools:${version_spring_boot}"
             ],
-            springThymeleaf  : [
-                    "org.springframework.boot:spring-boot-starter-thymeleaf:${version_spring_boot}",
-                    "org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.2.RELEASE"
-            ],
             springData       : [
                     "org.springframework:spring-tx:4.2.5.RELEASE"
             ],

@@ -28,6 +28,12 @@ public class ZabbixDataAutoConfiguration {
         return new ZabbixProperties();
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
     protected abstract static class AbstractZabbixConfiguration {
 
         @Autowired

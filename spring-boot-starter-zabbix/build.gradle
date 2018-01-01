@@ -1,7 +1,7 @@
 dependencies {
-	compile libs.commons
-	compile libs.springBoot
+    compile libs.commons
+    compile libs.springBoot
 
-	compile project(":spring-data-zabbix")
+    compile project(":spring-data-zabbix")
 }
 
