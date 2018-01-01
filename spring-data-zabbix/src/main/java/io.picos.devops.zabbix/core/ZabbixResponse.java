@@ -30,6 +30,14 @@ public class ZabbixResponse {
         this.id = id;
     }
 
+    public JSONObject getResult() {
+        return result;
+    }
+
+    public void setResult(JSONObject result) {
+        this.result = result;
+    }
+
     @Override
     public String toString() {
         return JSON.toJSONString(this);
