@@ -3,6 +3,5 @@ dependencies {
 	compile libs.springBoot
 
 	compile project(":spring-data-zabbix")
-	compile project(":spring-zabbix-api")
 }
 

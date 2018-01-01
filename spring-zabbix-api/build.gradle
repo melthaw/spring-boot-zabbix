@@ -1,5 +1,7 @@
 dependencies {
 	compile libs.commons
 	compile libs.springBoot
+
+	compile project(":spring-boot-starter-zabbix")
 }
 
