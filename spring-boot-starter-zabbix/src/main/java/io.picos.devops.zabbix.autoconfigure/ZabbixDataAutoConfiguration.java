@@ -28,12 +28,6 @@ public class ZabbixDataAutoConfiguration {
         return new ZabbixProperties();
     }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
     protected abstract static class AbstractZabbixConfiguration {
 
         @Autowired
@@ -79,8 +73,8 @@ public class ZabbixDataAutoConfiguration {
 
         @Bean
         @ConditionalOnMissingBean({ZabbixConnectionFactory.class})
-        public ZabbixConnectionFactory zabbixConnectionFactory(RestTemplate restTemplate) throws UnknownHostException {
-            return this.applyProperties(new ZabbixSimpleConnectionFactory(restTemplate));
+        public ZabbixConnectionFactory zabbixConnectionFactory() throws UnknownHostException {
+            return this.applyProperties(new ZabbixSimpleConnectionFactory(new RestTemplate()));
         }
 
     }

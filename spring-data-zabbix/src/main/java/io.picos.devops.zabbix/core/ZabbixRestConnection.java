@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.PermissionDeniedDataAccessException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,6 +40,7 @@ public class ZabbixRestConnection implements ZabbixConnection {
                                                   .paramEntry("password", this.connectOptions.getPassword())
                                                   .method("user.login")
                                                   .build();
+
 
             ZabbixResponse zabbixResponse = this.restTemplate.postForObject(this.connectOptions.getUrl(),
                                                                             request,
@@ -80,7 +84,17 @@ public class ZabbixRestConnection implements ZabbixConnection {
         //put
         //delete
         //others
-        throw new ZabbixException(String.format("Unsupported zabbix request method %s", zabbixRequest.getMethod()));
+        return doExecute(zabbixRequest);
+//        throw new ZabbixException(String.format("Unsupported zabbix request method %s", zabbixRequest.getMethod()));
+    }
+
+    private ZabbixResponse doExecute(ZabbixRequest zabbixRequest) {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("key1", "values");
+        requestHeaders.add("key2", "ddd");
+        HttpEntity<String> requestEntity = new HttpEntity<String>(null, requestHeaders);
+        ResponseEntity<ZabbixResponse> response = restTemplate.exchange(this.connectOptions.getUrl(), HttpMethod.GET, requestEntity, ZabbixResponse.class);
+        return response.getBody();
     }
 
     /**
